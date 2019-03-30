@@ -39,13 +39,13 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
-    '@nuxtjs/axios',
+    '@nuxtjs/axios'
   ],
   axios: {
     proxy: true
   },
   proxy: {
-    'http://localhost:1323/login': 'http://localhost:1323/login'
+    'http://localhost:1323': 'http://localhost:1323'
   },
 
   /*
