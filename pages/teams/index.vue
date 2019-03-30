@@ -19,8 +19,7 @@
 </template>
 
 <script>
-const Cookie = process.client ? require('js-cookie') : undefined
-import axios from 'axios'
+const Cookie = process.client ? require('js-cookie') : undefined;
 
 export default {
   // team側でもauth設定するかもなので一旦コメントアウト

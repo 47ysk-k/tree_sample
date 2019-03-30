@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.4.1",
+    "@toast-ui/vue-editor": "^1.1.1",
     "cookieparser": "^0.1.0",
     "cross-env": "^5.2.0",
     "js-cookie": "^2.2.0",
