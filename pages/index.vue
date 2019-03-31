@@ -28,11 +28,13 @@
 </template>
 
 <script>
+const Cookie = process.client ? require('js-cookie') : undefined
 
 export default {
   methods: {
     logout() {
-      this.$store.commit('setAuth', null)
+      Cookie.remove('auth')
+      this.$store.commit('user/setAuth', null)
     }
   }
 }

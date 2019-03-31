@@ -5,7 +5,7 @@
 <script>
 
 export default {
-  middleware: 'authenticated',
+  // middleware: 'userAuthenticated',
   mounted() {
     if (process.browser) {
       require('codemirror/lib/codemirror.css');
@@ -13,8 +13,8 @@ export default {
       require('tui-editor/dist/tui-editor-contents.css');
       require('highlight.js/styles/github.css');
 
-      var Editor = require('tui-editor');
-      var editor = new Editor({
+      const Editor = require('tui-editor');
+      const editor = new Editor({
         el: document.querySelector('#editSection'),
         initialEditType: 'markdown',
         previewStyle: 'vertical',
