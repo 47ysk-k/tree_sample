@@ -8,7 +8,7 @@
       <label for="password">
         <input id="password" type="password" v-model="password" placeholder="password">
       </label>
-      <button @click="postSignup">
+      <button @click="postUserSignup">
         signup
       </button>
       <p>The credentials are not verified for the example purpose.</p>
@@ -29,13 +29,13 @@ export default {
     }
   },
   methods: {
-    postSignup() {
+    postUserSignup() {
       this.$axios.$post('http://localhost:1323/users' ,{ email: this.email, password: this.password })
       .then(res => {
-        const auth = { accessToken: res.token }
+        const auth = { userAccessToken: res.token }
         this.$store.commit('setAuth', auth) // mutating to store for client rendering
         Cookie.set('auth', auth) // saving token in cookie for server rendering
-        this.$router.push('/')
+        this.$router.push('/teams')
       })
       .catch(e => {
         console.log(e)

@@ -45,7 +45,7 @@ export default {
     proxy: true
   },
   proxy: {
-    'http://localhost:1323/login': 'http://localhost:1323/login'
+    'http://localhost:1323': 'http://localhost:1323'
   },
 
   /*

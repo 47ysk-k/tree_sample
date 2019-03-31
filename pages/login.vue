@@ -17,8 +17,7 @@
 </template>
 
 <script>
-const Cookie = process.client ? require('js-cookie') : undefined
-import axios from 'axios'
+const Cookie = process.client ? require('js-cookie') : undefined;
 
 export default {
   middleware: 'notAuthenticated',
@@ -32,10 +31,10 @@ export default {
     postLogin() {
       this.$axios.$post('http://localhost:1323/users' ,{ email: this.email, password: this.password })
       .then(res => {
-        const auth = { accessToken: res.token }
+        const auth = { userAccessToken: res.token }
         this.$store.commit('setAuth', auth) // mutating to store for client rendering
         Cookie.set('auth', auth) // saving token in cookie for server rendering
-        this.$router.push('/')
+        this.$router.push('teams')
       })
       .catch(e => {
         console.log(e)
