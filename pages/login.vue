@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     postLogin() {
-      this.$axios.$post('http://localhost:1323/login' ,{ email: this.email, password: this.password })
+      this.$axios.$post('http://localhost:1323/login', { email: this.email, password: this.password })
       .then(res => {
         const auth = { userAccessToken: res.token }
         this.$store.commit('setAuth', auth)

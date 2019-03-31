@@ -2,15 +2,15 @@
   <div class="container">
     <h1> /teams/index </h1>
     <div>
-      <label for="email">
-        <input id="email" type="email" v-model="email" placeholder="email">
-      </label>
       <label for="name">
-        <input id="name" type="text" v-model="name" placeholder="team name">
+        <input id="name" type="text" v-model="name" placeholder="name">
       </label>
-      <!-- <button @click="postTeamlogin">
-        login
-      </button> -->
+      <label for="member_name">
+        <input id="member_name" type="text" v-model="member_name" placeholder="member_name">
+      </label>
+<!--      <button @click="postTeamlogin">-->
+<!--        login-->
+<!--      </button>-->
       <button @click="postTeamSignup">
         signup
       </button>
@@ -19,15 +19,13 @@
 </template>
 
 <script>
-const Cookie = process.client ? require('js-cookie') : undefined;
-
 export default {
   // team側でもauth設定するかもなので一旦コメントアウト
   // middleware: 'notAuthenticated',
   data() {
     return {
-      email: '',
       name: '',
+      member_name: '',
     }
   },
   methods: {
@@ -45,15 +43,20 @@ export default {
     //   })
     // },
     postTeamSignup() {
-      this.$axios.$post('http://localhost:1323/createTeam' ,{ email: this.email, name: this.name })
+      const config = {
+        headers: {
+          'Authorization': 'Bearer ' + this.$store.state.auth.userAccessToken,
+          'Content-Type': 'application/json'
+        }
+      }
+      this.$axios.$post('http://localhost:1323/team', { name: this.name, member_name: this.member_name }, config)
       .then(res => {
-        const auth = { teamAccessToken: res.token }
-        this.$store.commit('setAuth', auth) // mutating to store for client rendering
-        Cookie.set('auth', auth) // saving token in cookie for server rendering
+        const auth = { current_team: res }
+        this.$store.commit('setAuth', auth)
         this.$router.push('/teams')
       })
       .catch(e => {
-        console.log(e)
+        // ステータスコード見て処理書く
       })
     }
   }
