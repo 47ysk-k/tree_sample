@@ -49,7 +49,7 @@ export default {
           'Content-Type': 'application/json'
         }
       }
-      this.$axios.$post('http://localhost:1323/team', { name: this.name, member_name: this.member_name }, config)
+      this.$axios.$post('http://localhost:1323/teams', { name: this.name, member_name: this.member_name }, config)
       .then(res => {
         const auth = { current_team: res }
         this.$store.commit('setAuth', auth)
