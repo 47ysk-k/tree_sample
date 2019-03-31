@@ -17,7 +17,6 @@
 </template>
 
 <script>
-const Cookie = process.client ? require('js-cookie') : undefined;
 
 export default {
   middleware: 'notAuthenticated',
@@ -29,15 +28,14 @@ export default {
   },
   methods: {
     postLogin() {
-      this.$axios.$post('http://localhost:1323/users' ,{ email: this.email, password: this.password })
+      this.$axios.$post('http://localhost:1323/login' ,{ email: this.email, password: this.password })
       .then(res => {
         const auth = { userAccessToken: res.token }
-        this.$store.commit('setAuth', auth) // mutating to store for client rendering
-        Cookie.set('auth', auth) // saving token in cookie for server rendering
+        this.$store.commit('setAuth', auth)
         this.$router.push('teams')
       })
       .catch(e => {
-        console.log(e)
+        // ステータスコード見て処理書く
       })
     }
   }
