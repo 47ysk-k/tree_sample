@@ -18,7 +18,8 @@ export default {
         el: document.querySelector('#editSection'),
         initialEditType: 'markdown',
         previewStyle: 'vertical',
-        height: '600px'
+        height: '600px',
+        exts: ['colorSyntax']
       });
     }
   }
